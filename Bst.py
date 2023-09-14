@@ -22,6 +22,7 @@ class BinarySearchTree:
       else:
         current_node.left = Node(value)
 
+
   def search(self, value, current_node=None):
     if not current_node:
       current_node = self.root
@@ -88,3 +89,19 @@ bst.print_sorted_reverse()
 # print(bst.root.right.right)
 # print(bst.root.right.left)
 # print(bst.root.left.right)
+Binary search tree is a data structure that quickly allows us to maintain a sorted list of numbers.
+It is called a binary tree because each tree node has a maximum of two children.
+It is called a search tree because it can be used to search for the presence of a number in O(log(n)) time.
+  The properties that separate a binary search tree from a regular binary tree is
+
+All nodes of left subtree are less than the root node
+All nodes of right subtree are more than the root node
+Both subtrees of each node are also BSTs i.e. they have the above two properties
+
+Inserting a value in the correct position is similar to searching because we try to maintain the rule that the left subtree is lesser than root and the right subtree is larger than root.
+We keep going to either right subtree or left subtree depending on the value and when we reach a point left or right subtree is null, we put the new node there.
+
+Binary trees are useful for storing data in an organized manner so that it can be quickly retrieved, inserted, updated, and deleted. This arrangement of nodes allows each comparison to skip about half of the rest of the tree, so each operation as a whole is lightning fast.
+  
+Balanced binary tree: A balanced binary tree, also referred to as a height-balanced binary tree, is defined as a binary tree in which the height of the left and right subtree of any node differ by not more than 1.
+  
