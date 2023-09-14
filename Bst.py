@@ -4,6 +4,7 @@ class BinarySearchTree:
 
   def __init__(self, root_value):
     self.root = Node(root_value)
+    self.sorted_values = []
 
   def __repr__(self):
     return f'<BST: {self.root}'
@@ -21,7 +22,6 @@ class BinarySearchTree:
         self.add_node(value, current_node.left)
       else:
         current_node.left = Node(value)
-
 
   def search(self, value, current_node=None):
     if not current_node:
@@ -58,6 +58,16 @@ class BinarySearchTree:
     print(current_node.value)
     if current_node.right:
       self.print_sorted(current_node.right)
+  
+  def store_sorted(self, current_node = None):
+    if not current_node: 
+      current_node = self.root
+    if current_node.left:
+      self.store_sorted(current_node.left)
+    self.sorted_values.append(current_node.value)
+    if current_node.right:
+      self.store_sorted(current_node.right)
+    return self.sorted_values
 
   def print_sorted_reverse(self, current_node = None):
     if not current_node: 
@@ -68,40 +78,47 @@ class BinarySearchTree:
     if current_node.left:
       self.print_sorted_reverse(current_node.left)
       
+if __name__ == '__main__':
+  bst = BinarySearchTree(100)
+  bst.add_node(125)
+  bst.add_node(130)
+  bst.add_node(115)
+  bst.add_node(50)
+  bst.add_node(25)
+  bst.add_node(75)
+  bst.add_node(110)
+  bst.add_node(120)
+  # print(bst.search(75), 'test search')
 
-bst = BinarySearchTree(100)
-bst.add_node(125)
-bst.add_node(130)
-bst.add_node(115)
-bst.add_node(50)
-bst.add_node(25)
-bst.add_node(75)
-bst.add_node(110)
-bst.add_node(120)
-# print(bst.search(75), 'test search')
-
-print(bst.get_min())
-print(bst.get_max())
+  print(bst.get_min())
+  print(bst.get_max())
 
 
-bst.print_sorted_reverse()
+  bst.print_sorted_reverse()
+
+  # print(bst.root.right.right)
+  # print(bst.root.right.left)
+  # print(bst.root.left.right)
+
+
+# bst.print_sorted_reverse()
 
 # print(bst.root.right.right)
 # print(bst.root.right.left)
 # print(bst.root.left.right)
-Binary search tree is a data structure that quickly allows us to maintain a sorted list of numbers.
-It is called a binary tree because each tree node has a maximum of two children.
-It is called a search tree because it can be used to search for the presence of a number in O(log(n)) time.
-  The properties that separate a binary search tree from a regular binary tree is
+# Binary search tree is a data structure that quickly allows us to maintain a sorted list of numbers.
+# It is called a binary tree because each tree node has a maximum of two children.
+# It is called a search tree because it can be used to search for the presence of a number in O(log(n)) time.
+#   The properties that separate a binary search tree from a regular binary tree is
 
-All nodes of left subtree are less than the root node
-All nodes of right subtree are more than the root node
-Both subtrees of each node are also BSTs i.e. they have the above two properties
+# All nodes of left subtree are less than the root node
+# All nodes of right subtree are more than the root node
+# Both subtrees of each node are also BSTs i.e. they have the above two properties
 
-Inserting a value in the correct position is similar to searching because we try to maintain the rule that the left subtree is lesser than root and the right subtree is larger than root.
-We keep going to either right subtree or left subtree depending on the value and when we reach a point left or right subtree is null, we put the new node there.
+# Inserting a value in the correct position is similar to searching because we try to maintain the rule that the left subtree is lesser than root and the right subtree is larger than root.
+# We keep going to either right subtree or left subtree depending on the value and when we reach a point left or right subtree is null, we put the new node there.
 
-Binary trees are useful for storing data in an organized manner so that it can be quickly retrieved, inserted, updated, and deleted. This arrangement of nodes allows each comparison to skip about half of the rest of the tree, so each operation as a whole is lightning fast.
+# Binary trees are useful for storing data in an organized manner so that it can be quickly retrieved, inserted, updated, and deleted. This arrangement of nodes allows each comparison to skip about half of the rest of the tree, so each operation as a whole is lightning fast.
   
-Balanced binary tree: A balanced binary tree, also referred to as a height-balanced binary tree, is defined as a binary tree in which the height of the left and right subtree of any node differ by not more than 1.
+# Balanced binary tree: A balanced binary tree, also referred to as a height-balanced binary tree, is defined as a binary tree in which the height of the left and right subtree of any node differ by not more than 1.
   

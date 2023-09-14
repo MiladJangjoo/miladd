@@ -1,4 +1,5 @@
 from Node import Node
+from Bst import BinarySearchTree
 
 class LinkedList:
 
@@ -8,9 +9,9 @@ class LinkedList:
   def __repr__(self):
     # output =  f'<LinkedList: '
     # for node in self:
-    #   output += f'{node.value} -> '
+    #   output += f'{str(node.value)} -> '
     # return output.rstrip(' -> ')
-    return f'<LinkedList: {" -> ".join(node.value for node in self)}>'
+    return f'<LinkedList: {" -> ".join(str(node.value) for node in self)}>'
   
   def __iter__(self):
     current_node = self.head
@@ -52,28 +53,32 @@ class LinkedList:
     for node in self:
       pass
     return node
+  
 
   def remove(self, value):
-    pass
+    if value == self.head.value:
+      self.head = self.head.right
+      return
+    for node in self:
+      if node.right and value == node.right.value:
+        node.right = node.right.right
+        return
 
-linkedlist = LinkedList('Monday')
-linkedlist.append_node('Tuesday')
-linkedlist.append_node('Wednesday')
-linkedlist.append_node('Friday')
+  def create_sorted_ll(self, alist):
+    bst = BinarySearchTree(self.head.value)
+    for num in alist:
+      bst.add_node(num)
+    bst.store_sorted()
+    for value in bst.sorted_values:
+      self.append_node(value)
+    self.remove(self.head.value)
 
-# print(linkedlist.search('Monday'))
-# print(linkedlist.search('Friday'))
 
-# print(linkedlist.head.right)
+    
 
-linkedlist.insert('Wednesday', 'Thursday')
-print(linkedlist)
-# linkedlist.insert('Saturday', 'Sunday')
 
-# linkedlist.update_head('Sunday')
+ll = LinkedList(100)
 
-# for node in linkedlist:
-  # print(node)
-  # print(linkedlist.search(node.value))
+ll.create_sorted_ll([109,8,88,77,200,4])
 
-# print(linkedlist.get_tail())
+print(ll)
