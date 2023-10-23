@@ -1,0 +1,1 @@
+self.assertNotEqual(fizzbuzz(10),'Buzz')
